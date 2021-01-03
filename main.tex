@@ -1,0 +1,546 @@
+\documentclass[a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{beton}
+\usepackage{euler}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{pgfplots}
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\l@chapter}{1.0em}{0.8em}{}{}
+\makeatother
+\pgfplotsset{compat=1.16}
+\graphicspath{ {./images/} }
+
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Paolo's Practical Notes}
+\rhead{\thechapter}
+\rfoot{Page \thepage}
+
+\begin{document}
+\title{\includegraphics[width=0.4\textwidth]{seal.png}~\\[1cm]\textbf{\texttt{\textbf{Analysis 1 Practicals}}}}
+\author{\texttt{Paolo Danese - 20045192}\\\\\text{Dip. Ingegneria dell'Innovazione - Ingegneria dell'Informazione}}
+\date{\texttt{July 2020}}
+\maketitle
+\tableofcontents
+
+\chapter{\textbf{Complex Numbers}}
+\section{\textbf{Algebraic form}}
+\subsection{\textbf{Definition(Algebraic Form)}}
+The algebraic form is defined as follows:
+\begin{equation}
+z = x + iy
+\end{equation}
+
+
+\subsection{\textbf{Properties}}
+Algebraic form makes addition, subtraction, rationalization easier.
+The following properties are worth remembering:
+
+\begin{gather}
+\left | z \right | \geq 0, 
+\left | z \right | = 0  \Leftrightarrow z = 0
+\end{gather}
+\begin{gather}
+\overline{z} = (x - iy) \Longrightarrow\\
+z \cdot \overline{z} = (x + iy)(x - iy) = x^{2} + y^{2} = \left | z^{2} \right| = \left | \overline{z}^{2} \right|
+\end{gather}
+\begin{gather}
+Re(x + iy) = x \Longrightarrow Re(z) = Re(\overline{z})\\
+Im(x + iy) = y \Longrightarrow Im(z) = -Im(\overline{z})
+\end{gather}
+\begin{gather}
+\left | z \right | = \sqrt{(x^{2} + y^{2})} \Longrightarrow \left | z \right | = \left | \overline{z} \right |\\
+ \text{ but it is not valid for comparison operators: }
+\\\left | z+w \right |\leq \left | z \right | + \left | w \right |
+\end{gather}
+% \begin{figure}
+% 	\begin{center}
+% 		\caption{A complex number and its conjugate.}
+% 		\includegraphics[scale=0.25]{Complex_conjugate_picture.svg.png}
+% 	\end{center}
+% \end{figure}
+
+\text{Conjugate properties carry over operations:}
+\begin{gather}
+\overline{\left(z + w\right)} = \overline{z} + \overline{w}\\
+\overline{\left(z \cdot w\right)} = \overline{z} \cdot \overline{w}\\
+\overline{\left(\frac{z}{w}\right)} = \frac{\overline{z}}{\overline{w}}
+\end{gather}
+
+
+\section{\textbf{Polar coordinates \& Trigonometric form}}
+\subsection{\textbf{Polar coordinates}}
+\paragraph{\textbf{Definition (Polar coordinates)}}
+We define the polar coordinates as follows:
+\[
+z=\left(x + iy\right) =
+\begin{cases}
+x = \rho\cos(\vartheta)\\
+y = \rho\sin(\vartheta)
+\end{cases}
+\]
+
+\subsection{\textbf{Trigonometric form}}
+\paragraph{\textbf{Definition (Trigonometric form)}}
+Each $z\in\mathbb{C}$ can be expressed as follows using polar forms:
+\begin{align}
+z = \rho(\cos(\vartheta) + \imath\sin(\vartheta)) \enspace \text{with} \\
+p =  \sqrt{x^{2} + y^{2}}\\
+\end{align}
+
+
+\[
+\vartheta = 
+\begin{cases}
+\arctan(\frac{y}{x}), & \text{if } x>0 \text{ (First Quadrant)}\\
+\pi + \arctan(\frac{y}{x}), & \text{if } x<0, y \geq 0 \text{ (Fourth Quadrant)}\\
+-\pi + \arctan(\frac{y}{x}), & \text{if } x<0, y<0 \text{ (First Quadrant)}\\
+\frac{\pi}{2}, & \text{if } x=0, y>0\\
+-\frac{\pi}{2}, & \text{if } x=0, y<0
+\end{cases}
+\]
+
+
+The trick to remembering the aforementioned definitions is to refer to the unit circle and the uniquely defined tangents in the first and fourth quadrant of the unit circle.
+% \begin{figure}
+% 	\begin{center}
+% 		\caption{The uniquely defined values of the tangent function.}
+% 		\includegraphics[scale=0.5]{tanquadrant.png}
+% 	\end{center}
+% \end{figure}
+
+\subsubsection{\textbf{Properties of the Trigonometric form}}
+\paragraph{\textbf{Multiplication and division}}
+The trigonometric form is useful with multiplication and division:
+\begin{align}
+z_{1}\cdot z_{2} = \rho_{1} \cdot \rho_{2} \left [ \cos\left ( \vartheta_{1} +  \vartheta_{2} \right ) + i\sin\left ( \vartheta_{1} +  \vartheta_{2} \right ) \right ]\\
+\frac{z_{1}}{z_{2}} = \frac{\rho_{1}}{\rho_{2}} \left [ \cos\left ( \vartheta_{1} -  \vartheta_{2} \right ) + i\sin\left ( \vartheta_{1} -  \vartheta_{2} \right ) \right ]
+\end{align}
+
+\paragraph{\textbf{De Moivre's Formula}}
+\begin{align}
+z^{n} = \rho ^{n} \left [ \cos\left ( n\cdot \vartheta \right ) + i\sin\left ( n\cdot \vartheta \right ) \right ]
+\end{align}
+
+\section{\textbf{Exponential form}}
+\subsection{\textbf{Definition (Exponential Form)}}
+The exponential form is defined as follows:
+
+\begin{align}
+z = \left | z \right |\cdot e^{i\cdot \theta } = \rho e^{i\theta }
+\end{align}
+
+\subsection{\textbf{Multiplication}}
+The exponential form is both useful for multiplication and division (?), and also for root calculation.
+Multiplication is as follows:
+\begin{align}
+z_{1} = \rho _{1} \cdot e^{i\theta _{1}}\\
+z_{2} = \rho _{2} \cdot e^{i\theta _{2}}\\
+z_{1}\cdot z_{2} = \rho _{1}\cdot e^{i\theta _{1}}\cdot \rho _{2}\cdot e^{i\theta _{2}}=\rho _{1}\rho _{2}e^{i\left ( \theta _{1} + \theta _{2} \right )}\\
+z^{n} = \rho ^{n}e^{in\theta }	
+\end{align}
+
+
+
+
+
+\subsection{\textbf{Root calculation}}
+Let $ z = \rho e^{i\vartheta}, w = k e^{i\alpha} $, then we can find the n roots as follows:
+\begin{align}
+z^{n} = w \Longrightarrow \rho ^{n}e^{in\vartheta} = k e^{i\alpha} \Longrightarrow\\
+\Longrightarrow \begin{cases}
+\rho ^{n} = k \\
+\cos(n\vartheta) = \cos(\alpha) \\
+\sin(n\vartheta) = \sin(\alpha)
+\end{cases} \\ \Longrightarrow
+\begin{cases}
+\rho = \sqrt[n]{k}\\
+\vartheta = \left ( \frac{\alpha}{n} + \frac{2c\pi }{n} \right ), & \text{ con } c = 0,1,\cdots , n - 1
+\end{cases}
+\end{align}
+
+\chapter{\textbf{Sequences}}
+\section{\textbf{General Limit Theory}}
+\subsection{\textbf{Infinities}}
+\text{Before hopping into indeterminate forms, here are all the cases:}
+\begin{align}
+\lim_{n \to +\infty} \frac{P_{k}\left ( n \right )}{Q_{k}\left ( n \right )} & \text{ with k } \in \mathbb{N} = \frac{a_{k}}{b_{k}}
+\end{align}
+\text{ if infinities are of the same order and eliminable.}
+\text{Otherwise the following applies: }
+\subsubsection{\textbf{Sumtraction}}
+\text{If we are evaluating } $\lim_{n \to +\infty}    a_{n} \pm  b_{n}$ \text{:}
+\begin{itemize}
+\item if  $a_{n}\overset{+\infty }{\rightarrow} +\infty$ and $b_{n}\overset{+\infty }{\rightarrow} c\in\mathbb{R}$,  \text{ then }  $a_{n} \pm  b_{n} = +\infty$
+\item if  $a_{n}\overset{+\infty }{\rightarrow} -\infty$ and $b_{n}\overset{+\infty }{\rightarrow} c\in\mathbb{R}$,  \text{ then }  $a_{n} \pm  b_{n} = -\infty$
+\item if  $a_{n}\overset{+\infty }{\rightarrow} +\infty$ and $b_{n}\overset{+\infty }{\rightarrow} +\infty$,  \text{ then }  $a_{n} +  b_{n} = +\infty$
+\item if  $a_{n}\overset{+\infty }{\rightarrow} -\infty$ and $b_{n}\overset{+\infty }{\rightarrow} -\infty$,  \text{ then }  $a_{n} +  b_{n} = -\infty$
+\end{itemize}
+\subsubsection{\textbf{Multiplication}}
+\text{If we are evaluating } $\lim_{n \to + \infty} a_{n} \cdot b_{n}$ \text{ :}
+\begin{itemize}
+    \item if $a_{n}\overset{+\infty }{\rightarrow} +\infty$ and $ b_{n}\overset{+\infty }{\rightarrow} c\in\mathbb{R}\setminus \left \{ 0 \right \} $ \text{ then } $ a_{n} \cdot b_{n} = \pm \infty$
+    \item if $a_{n}\overset{+\infty }{\rightarrow} \pm \infty$ and $b_{n}\overset{+\infty }{\rightarrow} \pm \infty$ \text{ then } $ a_{n} \cdot b_{n} = \pm \infty\\$ \text{ (Sign rule applies) }
+\end{itemize}
+\subsubsection{\textbf{Division}}
+\text{If we are evaluating } $ \lim_{n \to + \infty} \frac{a_{n}}{b_{n}}  $
+\begin{itemize}
+    \item if $a_{n}\overset{+\infty}{\rightarrow}a\in\mathbb{R}$ and $b_{n}\overset{+\infty}{\rightarrow}\pm\infty$ then $\frac{a_{n}}{b_{n}} = 0$
+    \item if $a_{n}\overset{+\infty}{\rightarrow}\pm\infty$ and $b_{n}\overset{+\infty}{\rightarrow}b\in\mathbb{R}\setminus \left \{ 0 \right \}$ then $\frac{a_{n}}{b_{n}} = \pm\infty$
+    \item if $a_{n}\overset{+\infty}{\rightarrow}a\in\mathbb{R}\setminus \left \{ 0 \right \} $ and $b_{n}\overset{+\infty}{\rightarrow}0$ then $\frac{a_{n}}{b_{n}} = \pm\infty$ \text{ (} $b_{n}>0$ \text{ and } $b_{n}<0$ \text{)}
+\end{itemize}
+\text{Keeping in mind that the rule of signs still applies.}
+\subsubsection{\textbf{Limited sequences and infinity}}
+\text{If } $ \left ( a_{n} \right )_{n\in\mathbb{N}} \rightarrow 0 $ \text{ and } $\left ( b_{n} \right )_{n\in\mathbb{N}}$ \text{ is a limited sequence, then } $\left ( a_{n}\cdot b_{n} \right )_{n\in\mathbb{N}}\\$ \text { also converges to 0 due to the squeeze theorem.}
+\subsubsection{\textbf{Indeterminate Forms}}
+\text{Nothing can be said about the following forms: }
+\begin{itemize}
+    \item if $a_{n}\overset{+\infty}{\rightarrow}+\infty$, $b_{n}\overset{+\infty}{\rightarrow}-\infty$ then $a_{n} + b_{n} = ?$
+    \item if $a_{n}\overset{+\infty}{\rightarrow}\pm\infty$, $b_{n}\overset{+\infty}{\rightarrow}0$ then $a_{n} \cdot b_{n} = ?$
+    \item if $a_{n}\overset{+\infty}{\rightarrow}\pm\infty$, $b_{n}\overset{+\infty}{\rightarrow}\pm\infty$ then $\frac{a_{n}}{b_{n}} = ?\\$ which is similar to the previous case.
+    \item if $a_{n}\overset{+\infty}{\rightarrow}0$, $b_{n}\overset{+\infty}{\rightarrow}0$ then $\frac{a_{n}}{b_{n}} = ?$
+    \item $0^{0}$
+    \item $\infty^{0}$
+    \item $1^{\infty}$
+\end{itemize}
+\subsubsection{\textbf{Extracted Sequences}}
+\text{A sequence admits a limit if and only if all its extracted sequence admit the}\\ \text{same limit.}
+\subsection{\textbf{Notable Limits}}
+\subsubsection{\textbf{Geometric Sequence}}
+\text{Every sequence of type } $a^{n}$ with $a\in\mathbb{R}$ \text{ is called geometric sequence.}\\ \text{ The limit is as follows:}\\
+\begin{equation}
+    \lim_{n \to +\infty } a^{n} = \left\{\begin{matrix}
++\infty & if\ a > 1\\ 
+0 & if\ \left | a \right | < 1\\ 
+1 & if\ a = 1 \\ 
+\not{\exists}  & if\ a \leq -1 
+\end{matrix}\right.
+\end{equation}
+\subsubsection{\textbf{Roots}}
+\text{For each } $ a > 0 $ we have that $\lim_{n \to +\infty} \sqrt[n]{a} = 1$\\
+\text{We also have that } $ \lim_{n \to +\infty} \sqrt[n]{n} = 1 $
+\subsubsection{\textbf{Exponential}}
+\text{The sequence } $ \left ( \left ( 1 + \frac{1}{n} \right )^{n} \right )_{n\in\mathbb{N}} $ \text{ admits limit:}\\
+\begin{equation}
+    \exists \lim_{n \to +\infty}\left ( 1 + \frac{1}{n} \right )^{n} = sup_{n\in\mathbb{N}} \left ( 1 + \frac{1}{n} \right )^{n} = e \in \mathbb{R}
+\end{equation}
+\\therefore, it follows that if:\\
+\begin{align}
+a_{n}\rightarrow +\infty \Rightarrow \lim_{n \to +\infty}\left ( 1 + \frac{1}{a_{n}} \right )^{a_{n}} = e\\
+a_{n}\rightarrow 0 \Rightarrow \lim_{n \to +\infty}\left ( 1 + a_{n} \right )^{\frac{1}{a_{n}}} = e
+\end{align}
+\subsubsection{\textbf{Logarithm}}
+\text{For each } $n>3$ \text{ we have that } $\lim_{n \to +\infty} \frac{\log n}{n} = 0$
+\subsubsection{\textbf{Trigonometry}}
+\text{Let } $ a_{n} $ \text{ be an infinitesimal sequence. Then: }\\
+\begin{itemize}
+    \item $\lim_{n \to +\infty} \sin \left ( a_{n} \right ) = 0$ \text{ due to the fact that } $\left | sin\left ( x \right ) \right |\leq \left | x \right | \forall x\in\mathbb{R}$\\ \text{and by our proposition } $ a_{n} \rightarrow 0$
+    \item $\lim_{n \to +\infty} \frac{\sin\left (a_{n} \right )}{a_{n}} = 1$ \text{due to the first comparison theorem.}
+\end{itemize}
+\chapter{\textbf{Function Limits}}
+\section{\textbf{Basic Limits}}
+\subsection{\textbf{Examples}}
+\begin{enumerate}
+    \item \textbf{(Arctan)} We have that $\lim_{x\rightarrow +\infty}\arctan x = \frac{\pi}{2}$ and $\lim_{x\rightarrow -\infty}\arctan x = -\frac{\pi}{2}$
+    \item \textbf{(Exponential)} We have that $\lim_{x\rightarrow +\infty} a^{x} = +\infty$ and $ \lim_{x\rightarrow -\infty} a^{x} = 0 $ from $a^{-\alpha } = \frac{1}{a^{\alpha }},\ \alpha \in\mathbb{R}$
+    \item \textbf{(Power)} We have that $\lim_{x\rightarrow +\infty} x^{n} = +\infty$ and \\ $ \lim_{x\rightarrow -\infty}x^{n}=\left\{\begin{matrix}
++\infty &\ \text{if n is even} \\ 
+-\infty &\ \text{if n is not even}
+\end{matrix}\right.$
+\end{enumerate}
+\subsection{\textbf{Theorem (Characterisation of limits with sequences)}}
+\begin{tcolorbox}
+Let $\mathbb{X}\in\mathbb{R}$, let $x_{0}\in\mathbb{R}$ be an accumulation point of $\mathbb{X}$  and $f:\mathbb{X}\rightarrow\mathbb{R}$ a function. Then
+\tcblower
+\begin{align}
+    \exists \lim_{x\rightarrow x_{0}} f\left ( x \right )=l\in\mathbb{\bar{R}} \Leftrightarrow \forall \left ( x_{n} \right )_{n\in\mathbb{N}}:\lim_{n \to +\infty} x_{n}=x_{0}\Rightarrow \lim_{n \to +\infty} f\left ( x_{n} \right )=l
+\end{align}
+\end{tcolorbox}
+Which, alongside other consequences, implies that a function admits a limit if an only if all of its extracted sequences do:
+\begin{align}
+    \not{\exists }\lim_{x\rightarrow +\infty}\sin\left ( x \right ) \text{ due to limits to infinity of the sequences } x_{n}=\frac{\pi}{2} + 2k\pi, y_{n} = 2k\pi
+\end{align} 
+\subsubsection{\textbf{Examples}}
+\text{We demonstrated that for each infinitesimal sequence } $a_{n}$ \text{ we have that } $\\\lim_{n \to +\infty} \sin\left ( a_{n} \right ) = 0$, $\lim_{n \to +\infty} \cos\left ( a_{n} \right ) = 1$, $\lim_{n \to +\infty}\frac{ \sin\left ( a_{n} \right )}{a_{n}} = 1\\$\text{ As a result of the previous theorem, we have }
+\begin{align}
+    \lim_{x\rightarrow 0}\sin\left ( x \right )=0\\
+    \lim_{x\rightarrow 0}\cos\left ( x \right )=1\\
+    \lim_{x \to 0}\frac{ \sin\left ( x \right )}{x} = 1
+\end{align}
+\subsection{\textbf{Continuous Functions}}
+\subsubsection{\textbf{Weierstraß Theorem}}
+\begin{tcolorbox}
+Let $f:\left [ a,b \right ]\rightarrow \mathbb{R}$ be a continuous function in $\left [ a,b \right ]$. Then $f$ is limited and has minimum and maximum in $\left [ a,b \right ]$, specifically:
+\tcblower
+\begin{align}
+    \exists x_{1},x_{2}\in \left [ a,b \right ]\ such\ that\ \forall x\in\left [ a,b \right ]:\ f\left ( x_{1} \right )\leq f\left ( x \right )\leq f\left ( x2 \right )
+\end{align}
+\end{tcolorbox}
+\subsubsection{\textbf{Theorem of the existence of zeroes}}
+\begin{tcolorbox}
+Let $f:\left [ a,b \right ]\rightarrow \mathbb{R}$ be a function  continuous in $\left [ a,b \right ]$ such that $f\left ( a \right )\cdot f\left ( b \right )< 0$. Then there exists at least one $x_{0}\in \left ( a,b \right )$ such that $f\left ( x_{0} \right )=0$.\\
+If $f$ is also monotonous in $\left [ a,b \right ]$ then $x_{0}$ is unique.
+\end{tcolorbox}
+Note that as a corollary, the same applies to intervals of continuous functions. This theorem is useful for establishing zeroes in non easily resolvable equations.
+\subsubsection{\textbf{Discontinuity}}
+\text{There exist 3 types of discontinuity: }
+\begin{enumerate}
+    \item $\exists \lim_{x \to x_{0}} f\left ( x \right )=l\in\mathbb{R}$ \text{ with } $l\neq f\left ( x_{0} \right )$ \\ \text{ Example: }\\
+    $f\left ( x \right )=\left\{\begin{matrix}
+\frac{\sin\left ( x \right )}{x} & x\neq 0\\ 
+0 & x=0
+\end{matrix}\right.$ \text{ with an eliminable discontinuity at 0}.
+\item \textbf{Discontinuity of first species: }\\$\exists \lim_{x \to x_{0}^{+}} f\left ( x \right )=l_{2}\in\mathbb{R} \neq l_{3}\in\mathbb{R}=\exists \lim_{x \to x_{0}^{-}}f\left ( x \right )$ \\ \text{ with jump of value the subtraction of the two limits.}
+\item \textbf{All the remaining cases: }\\ \text{Limits to infinity, only one-sided limits to infinity, one side not existing}\\ \text{and the other existing, and so on, are called discontinuity of second species.}
+\end{enumerate}
+\subsection{\textbf{Notable Limits}}
+\begin{tcolorbox}
+\begin{enumerate}
+    \item $\lim_{x \to 0}\frac{\sin x}{x}=1$
+    \item $\lim_{x \to 0}\frac{\tan x}{x}=1$
+    \item $\lim_{x \to 0}\frac{\arcsin x}{x}=1$
+    \item $\lim_{x \to 0}\frac{\arctan x}{x}=1$
+    \item $\lim_{x \to 0}\frac{1 - \cos x}{x^{2}}=\frac{1}{2}$
+    \item $\lim_{x \to \pm \infty}\left ( 1+\frac{1}{x} \right )^{x} = e$
+    \item $\lim_{x \to 0} \left ( 1 + x \right )^{\frac{1}{x}} = e$
+    \item $\lim_{x \to 0} \frac{\log\left ( 1+x \right )}{x}=1$
+    \item $\lim_{x \to 0} \frac{e^{x}-1}{x}=1$
+    \item $\lim_{x \to + \infty} \frac{\log x}{x}=0$
+\end{enumerate}
+\end{tcolorbox}
+\chapter{\textbf{Derivation}}
+\section{Definitions of Derivative}
+\begin{align}
+    \exists \ f'\left ( x_{0} \right ) \Leftrightarrow \ \exists \ \underset{h \to 0}{\lim} \frac{f\left ( x_{0}+h \right ) - f\left ( x_{0} \right )}{h} \ \Leftrightarrow \exists \ \underset{x \to x_{0}}{\lim} \frac{f\left ( x \right ) - f\left ( x_{0} \right )}{x - x_{0}}
+\end{align}
+\section{\textbf{Geometric meaning of derivation}}
+There are 5 situations that can develop when evaluating the definition of derivative in a function:
+\begin{enumerate}
+\item \textbf{Tangent line to the point: }$\exists \lim_{h \to 0}\frac{f\left ( x_{0}+h \right ) - f\left ( x_{0} \right )}{h} = f^{'}\left ( x_{0} \right )$ \\ \text{(Derivable)}
+\item \textbf{Non derivable: } \text{if $f$ is not derivable in $x_{0}$, then either}\\ \text{ $\exists \lim_{h \to 0}\frac{f\left ( x_{0}+h \right ) - f\left ( x_{0} \right )}{h} = \pm \infty$ or $\not{\exists} \lim_{h \to 0}\frac{f\left ( x_{0}+h \right ) - f\left ( x_{0} \right )}{h}$}
+\item \textbf{Vertical flex tangent:}\\\text{In case $f$ is continuous in $x_{0}$ and $\exists \lim_{h \to 0}\frac{f\left ( x_{0}+h \right ) - f\left ( x_{0} \right )}{h} = \pm \infty$}\\ \text{Then the tangent assumes a position parallel to the y-axis.}\\ \text{Example: $\sqrt[3]{x}$ in $0$}\\
+\begin{center}
+\begin{tikzpicture}[scale = 0.5]
+\begin{axis}[
+    axis lines = left,
+    xlabel = $x$,
+    ylabel = {$y$},
+]
+%Below the red parabola is defined
+\addplot [
+    domain=-10:10, 
+    samples=50, 
+    color=red,
+]
+{x^(1/3)};
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\item \textbf{Angular point:}\\ \text{In case $f$ is continuous in $x_{0}$ and} \\ \text{$\exists \lim_{h \to 0^{+}}\frac{f\left ( x_{0}+h \right ) - f\left ( x_{0} \right )}{h} = m\in \mathbb{R}$, $\exists \lim_{h \to 0^{-}}\frac{f\left ( x_{0}+h \right ) - f\left ( x_{0} \right )}{h} = m'\in \mathbb{R}$}\\ \text{with $m\neq m'$. Example: $\left | x \right |$ in $0$:}\\
+\begin{center}
+\begin{tikzpicture}[scale = 0.5]
+\begin{axis}[
+    axis lines = left,
+    xlabel = $x$,
+    ylabel = {$y$},
+]
+%Below the red parabola is defined
+\addplot [
+    domain=-10:10, 
+    samples=50, 
+    color=red,
+]
+{abs(x)};
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\item \textbf{Pinnacle point:}\\ \text{In case $f$ is continuous in $x_{0}$ and} \\ \text{$\exists \lim_{h \to 0^{+}}\frac{f\left ( x_{0}+h \right ) - f\left ( x_{0} \right )}{h} = + \infty$, $\exists \lim_{h \to 0^{-}}\frac{f\left ( x_{0}+h \right ) - f\left ( x_{0} \right )}{h} = - \infty$}\\ \text{Then both the left and right derivative assume a position parallel to}\\ \text{the y-axis but they do not coincide due to the direction of the tangent}\\ \text{coming from left or right. Example: $\sqrt[3]{\left | x \right |}$ in $0$:}\\
+\begin{center}
+\begin{tikzpicture}[scale = 0.5]
+\begin{axis}[
+    axis lines = left,
+    xlabel = $x$,
+    ylabel = {$y$},
+]
+%Below the red parabola is defined
+\addplot [
+    domain=-10:10, 
+    samples=50, 
+    color=red,
+]
+{abs(x)^(1/3)};
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\end{enumerate}
+\subsection{Identifying non-derivable points}
+\text{Having described the different derivation points, there are a few steps to go} \\ \text{over during function studies to identify non-derivable points:}
+\begin{enumerate}
+    \item Identify possible points on non derivability, avoiding derivable points (sum, subtraction, product, quotient, composition of derivable functions.
+    \item Identify our function's domain.
+    \item Calculate the derivative of our function, and determine its domain.
+    \item Calculate $Dom\left ( f \right )\cap Dom\left ( f' \right )$ (intersection of the two domains) because it does not make sense to talk about derivation points in the points in which even $f$ is not defined.
+    \item In the points in which $f'$ is continuous we have no issues, as the necessary condition of derivability is fulfilled.
+    \item If we have a function defined in tracts:\\
+    $f\left ( x \right )=\left\{\begin{matrix}
+f_{1}\left ( x \right ) &\ for\ x\in\left [ a,b \right ] \\ 
+f_{2}\left ( x \right ) &\ for\ x\in\left ( b,c \right ]
+\end{matrix}\right.$\\\\
+    then the joint point $x=b$ is a potential non-derivability point.\\Example: Calculating the limit definition of derivation with absolute value functions.
+    \item The points we identified in steps 1-6 are possible points on non-derivability. Calculate the left and right limit of the incremental product to see which types of points they are.
+\end{enumerate}
+\subsubsection{Example 1: Absolute function}
+\begin{tcolorbox}
+Let's analyse the function $f\left ( x \right )=\left | 9-x^{2} \right |$ which is continuous in all its domain, that is, $Dom\left ( f \right )=\mathbb{R}$.\\
+However, the absolute value function $f\left ( x \right )=\left | x \right |$ is a non-derivable function in its only point in which the argument is null, due to the left limit and right limit in the limit definition of derivative existing but having different values. Therefore, we will analyse the points where the argument cancels:\\ $9-x^{2}=0\rightarrow x = \pm 3$\\Furthermore, there are no more points to take into consideration:\\
+$f'\left ( x \right )=\frac{\left | 9-x^{2} \right |}{9-x^{2}}\cdot\left ( -2x \right )$\\which is defined for each $x\in Dom\left ( f \right ),\ x \neq \pm 3$, or rather:\\ $Dom\left ( f \right )\cap Dom\left ( f' \right )=\mathbb{R}\setminus\left \{  \pm3 \right \}$
+\tcblower
+Having identified our possible points in which our function is not derivable, let's analyse them:\\
+$\lim_{h \to 0^{+}} \frac{f\left ( 3+h \right )-f\left ( 3 \right )}{h},\ \lim_{h \to 0^{-}} \frac{f\left ( 3+h \right )-f\left ( 3 \right )}{h}$\\$\ \lim_{h \to 0^{+}} \frac{f\left ( -3+h \right )-f\left ( -3 \right )}{h},\ \lim_{h \to 0^{-}} \frac{f\left ( -3+h \right )-f\left ( -3 \right )}{h}$\\and we will find that $\pm 3$ are angle points for $f$ because these limits (taken in couples) assume finite but different values.\\For example:\\
+$\lim_{h \to 0} \frac{f\left ( 3+h \right )-f\left ( 3 \right )}{h}=\lim_{h \to 0}\frac{\left | 9-\left ( 3+h \right )^{2} \right |-0}{h}=\lim_{h \to 0} \frac{\left | -6h - h^{2} \right |}{h}$, let's distinguish the left and right cases:\\
+To the left of $h=0$ we have $-6h - h^{2} > 0$ and therefore $\left | -6h -h^{2} \right |=+\left ( -6h-h^{2} \right )$, and therefore\\
+$\lim_{h \to 0^{-}}\frac{-6h -h^{2}}{h}=\lim_{h \to 0^{-}} \left ( -6 -h \right )=-6$\\
+On the other hand, at the right side of $h=0$ we have $-6h - h^{2} < 0$ and therefore $\left | -6h -h^{2} \right |=-\left ( -6h-h^{2} \right )$, lastly\\
+$\lim_{h \to 0^{+}} \frac{\left | -6h - h^{2} \right |}{h}=\lim_{h \to 0^{+}}\frac{6h + h^{2}}{h}=+6$.
+\end{tcolorbox}
+\section{\textbf{Calculating Derivatives}}
+\subsection{\textbf{Basic derivation rules}}
+\begin{tcolorbox}
+\begin{enumerate}
+    \item $\left ( f \pm g \right )' = f' \pm g'$
+    \item $\left ( f \cdot g \right )' = f' \cdot g \ + \ g' \cdot f$
+    \item $\left ( \frac{f}{g} \right )' = \frac{f'g - g'f}{g^{2}}$
+    \item $\forall c \in \mathbb{R}, \ \left ( c \cdot f \right )' = c \cdot \left ( f \right )'$
+    \item $\left ( \frac{1}{g} \right )' = - \frac{g'}{g^{2}}$
+    \item $\left ( g\circ f  \right )' = g'\left ( f \right ) \cdot f'$
+    \item $\left ( f^{-1} \right )' = \frac{1}{f'}$
+\end{enumerate}
+\end{tcolorbox}
+\subsection{\textbf{Basic functions derivates}}
+\begin{tcolorbox}
+\begin{enumerate}
+    \item \textbf{Constants: } $\forall k \in \mathbb{R},\ k' = 0$\\\\
+    \textbf{Natural Powers: } 
+    \item $\forall n \in \mathbb{N},\ \left ( x^{n} \right )' = n \cdot x^{n-1}$
+    \item $f\left ( x \right )=\frac{a_{n}x^{n} + a_{n-1}x^{n-1} + \cdots + a_{1}x^{1} + a_{0}}{b_{m}x^{m} + b_{m-1}x^{m-1} + \cdots + b_{1}x^{1} + b_{0}}$ \text{is derivable}\\ \text{in $\mathbb{R} \setminus \left \{ x \in \mathbb{R}:\ b_{m}x^{m} + b_{m-1}x^{m-1} + \cdots + b_{1}x^{1} + b_{0} = 0 \right \}$}\\
+    \text{Example: $\left ( \frac{1}{x^n} \right )' = -\frac{n}{x^{n+1}},\ \forall x \in \mathbb{R} \setminus \left \{ 0 \right \}$}\\\\
+    \textbf{Trigonometric Functions: }
+    \item $\left ( \sin x \right )' = \cos x $
+    \item $\left ( \cos x \right )' = - \sin x $
+    \item $\left ( \tan x \right )' = \left ( \frac{\sin x}{\cos x} \right )' = \frac{1}{\cos ^ {2}x} = 1 + \tan ^{2}x$
+    \item $\forall x \in \left ( -1,1 \right ),\ \left ( \arcsin x \right )' = \frac{1}{\sqrt{1-x^{2}}}$
+    \item $\forall x \in \left ( -1,1 \right ),\ \left ( \arccos x \right )' =- \frac{1}{\sqrt{1-x^{2}}}$
+    \item $\forall x \in \mathbb{R},\ \left ( \arctan x \right )' = \frac{1}{1+x^{2}}$
+\end{enumerate}
+\end{tcolorbox}
+\section{Applications of derivatives in function study}
+\subsection{Convexity and concavity}
+\begin{tcolorbox}
+Let $f:\left [ a,b \right ]\rightarrow \mathbb{R}$ be a function derivable in $\left [ a,b \right ]$ and 2 times derivable in $\left ( a,b \right )$.\\Then the following properties are valid:
+\tcblower
+\begin{enumerate}
+    \item The following conditions are equivalent:
+    \begin{enumerate}
+        \item $f$ is convex in $\left [ a,b \right ]$
+        \item $f'$ is increasing in $\left [ a,b \right ]$
+        \item $f'' \geq 0$ for each $x \in \left ( a,b \right )$
+    \end{enumerate}
+    \item The following conditions are equivalent:
+    \begin{enumerate}
+        \item $f$ is concave in $\left [ a,b \right ]$
+        \item $f'$ is decreasing in $\left [ a,b \right ]$
+        \item $f'' \leq 0$ for each $x \in \left ( a,b \right )$
+    \end{enumerate}
+\end{enumerate}
+\end{tcolorbox}
+\subsection{Maximum \& Minimum points}
+\text{First derivatives allow us to find both relative and absolute maximum}\\ \text{\& minimum points of a function, and to establish in which intervals of}\\ \text{a function's domain the function increases or decreases.}\\
+\text{We know that absolute maximum \& minimum points are also relative}\\ \text{maximum \& minimum points.}
+\subsubsection{Fermat's Theorem}
+\begin{tcolorbox}
+Let $f\left ( x \right )$ be a function with domain $Dom\left ( f \right )\subseteq \mathbb{R}$.\\If $x_{0}\in Dom\left ( f \right )$ is an extreme relative point for $f$, and the function is derivable in that point, then
+\begin{align}
+f'\left ( x_{0} \right )=0
+\end{align}
+\end{tcolorbox}
+\text{Fermat's theorem is a necessary but not sufficient condition}\\ \text{for a point to be relative or absolute maximum or minimum.}\\ \text{It states that stationary points are those where the derivative is null.}\\ \text{Some of these points are absolute or relative extreme points, i.e. absolute}\\ \text{or relative minimums or maximums.}
+
+\subsubsection{(Theorem) Test of the first derivative}
+\begin{tcolorbox}
+\begin{align}
+    x_{0} \text{ is a maximum point } \Leftrightarrow f\left ( x \right ) \text{ is increasing at the left of } x_{0}\\ \text{ and decreasing at the right of } x_{0}
+\end{align}
+\begin{align}
+    x_{0} \text{ is a minimum point } \Leftrightarrow f\left ( x \right ) \text{ is decreasing at the left of } x_{0}\\ \text{ and increasing at the right of } x_{0}
+\end{align}
+\end{tcolorbox}
+\subsubsection{Flex points} %TODO%
+\section{Taylor's Formula}
+\subsection{Landau notation}
+\textbf{Definition("Little o")} \text{Given two functions, $f$ and $g$ defined in a range around $x_{0}$, we say}\\ \text{that}
+\begin{align}
+    f\left ( x \right )=o\left ( g\left ( x \right ) \right ),\ for\ x \to x_{0}
+\end{align}
+\text{which is read as "$f\left ( x \right )$ is little o of $g\left ( x \right )\ for\ x\to x_{0}$" if}
+\begin{align}
+    \underset{x \to x_{0}}{\lim}\frac{f\left ( x \right )}{g\left ( x \right )}=0
+\end{align}
+\text{If $g$ is a non-null function in $I\setminus \left \{ x_{0} \right \}$ and $\underset{x \to x_{0}}{\lim}\ g\left ( x \right )=0$, meaning that $g$ is an infinitesimal}\\ \text{for $x \to x_{0}$, $f\left ( x \right )=o\left ( g\left ( x \right ) \right )$ for $x \to x_{0}$ implies that}\\ \text{$f$ tends to 0 for $x \to x_{0}$ but faster than $g$: "$0\leq f\left ( x \right )\leq g\left ( x \right )$ as $x \to x_{0}$".}\\
+\text{The Landau notation expresses a family of functions such that the limit tends to 0.}\\
+\text{The following properties follow:}
+\begin{enumerate}
+    \item $o\left ( g \right )+o\left ( g \right )=o\left ( g \right )$
+    \item $c \cdot o\left ( g \right )=o\left ( g \right )$
+    \item $g_{1}\cdot o\left ( g_{2} \right )=o\left ( g_{1} \cdot g_{2} \right )$
+    \item $o\left ( g_{1} \right ) \cdot o\left ( g_{2} \right ) = o\left ( g_{1}\cdot g_{2} \right )$
+    \item $\left | o\left ( g \right ) \right |^{\alpha }=o\left ( \left | g \right |^{\alpha} \right )$
+    \item $o\left ( g + o\left ( g \right ) \right )=o\left ( g \right )$
+    \item $o\left ( o\left ( g \right ) \right )=o\left ( g \right )$
+\end{enumerate}
+
+\chapter{Integration}
+\section{Indefinite Integration of irrational functions}
+\text{In these integrals we try to turn irrational integrals through substitution into rational ones.}\\\text{For example:}
+\begin{align*}
+    \int R\left ( x,\sqrt{ax + b} \right )dx\ \Rightarrow \ Let\ z^{2}=ax + b\ \rightarrow dx=\frac{2}{a}zdz\ \Rightarrow \ \int R\left ( \frac{z^{2}-b}{a},z \right )\frac{2}{a}zdz\ .
+\end{align*}
+If we have irrational second grade polynomials:
+$\int R\left(x,\sqrt{ax^{2} + bx + c} \right)dx$ 
+,we complete the square which puts us
+into one of 3 cases.\\
+\textbf{Completing the square:}
+\begin{align}
+    ax^{2} + bx + c = a\left(x+\frac{b}{2a} \right)^{2} - \frac{\varDelta }{4a}  
+\end{align}
+\begin{enumerate}
+    \item $\int R\left(x,\sqrt{a^{2}-x^{2}} \right)dx $: \\
+    We use the substitution $ x = a \sin z \ \rightarrow \ dx = a \cos z dz $.\\
+    Therefore $\sqrt{a^{2}-x^{2}} = \sqrt{a^{2} - \left(a \sin z\right)^{2} } = \left\lvert a \cos z\right\rvert  $\\
+    We then have left to integrate \\ $\int R\left(a \sin z, \left\lvert a \cos z\right\rvert \right)a \cos z dz $ \\ which can be further rationalised through the substitution $ t = \tan \frac{z}{2} $.
+    \item $\int R\left(x,\sqrt{a^{2} + x^{2}} \right)dx $: \\
+    We use the hyperbolic substitution $ x = a \sinh z \ \rightarrow \ dx = a \cosh z dz $.\\
+    Therefore $ \sqrt{a^{2} + x^{2}} = \sqrt{a^{2} + \left(a \sinh z\right)^{2} } = \left\lvert a\right\rvert \cosh z $\\
+    We then have left to integrate \\ $ \int R\left( a \sinh z, \left\lvert a\right\rvert \cosh z  \right) a \cosh z dz $\\
+    Which is generally solved by parts or through the substitution $t = e^{z}$. To return to the x variable, we use the inverse hyperbolic function:\\
+    $z =  sett \sinh \frac{x}{a} = \log \left(\frac{x}{a} + \sqrt{\left(\frac{x}{a} \right)^{2} + 1}  \right)  $
+    \item $ \int R\left(x, \sqrt{x^{2} - a^{2}} \right)dx $: \\
+    In this case we can also use the hyperbolic substitution $x = a \cosh z \ \rightarrow \ dx = a \sinh z dz$.\\
+    Therefore $ \sqrt{x^{2} - a^{2} } = \sqrt{\left(a \cosh z\right)^{2} - a^{2} } = \left\lvert a \sinh z\right\rvert $.\\
+    We then have left to integrate\\
+    $ \int R\left(a \cosh z, \left\lvert a \sinh z\right\rvert \right)a \sinh z dz $\\
+    Which can be calculated like the previous one. To return to the x variable we also use an inverse hyperbolic function:\\
+    $z = sett \cosh \frac{x}{a} = \log \left(\frac{x}{a} + \sqrt{\left(\frac{x}{a} \right)^{2} - 1 }  \right) $
+\end{enumerate}
+\end{document}
